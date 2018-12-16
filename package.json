@@ -1,0 +1,27 @@
+{
+  "name": "e-comerce",
+  "version": "1.0.0",
+  "description": "Project with express",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Byhako/express.git"
+  },
+  "author": "Ruben E Acosta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Byhako/express/issues"
+  },
+  "homepage": "https://github.com/Byhako/express#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
