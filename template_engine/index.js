@@ -6,7 +6,7 @@ const expressJsx = require('./express-jsx')
 app.engine('jsx', expressJsx)
 
 // select engine
-app.set('view', './views')
+app.set('views', './views')
 app.set('view engine', 'jsx')
 
 app.get('/', (req, res) => {
