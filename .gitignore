@@ -1,3 +1,5 @@
 basic/node_modules/
 express_generator/node_modules/
 template_engine/node_modules/
+ecommerce/node_modules/
+ecommerce/package-look.json
