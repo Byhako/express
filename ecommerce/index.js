@@ -1,12 +1,17 @@
 const express = require('express')
 const path = require('path')
-// const bodyParse = require('body-parse')
+const bodyParser = require('body-parser')
 
-const productsRouter = require('./routes/products')
+const productsRouter = require('./routes/views/products')
 const productosApiRouter = require('./routes/api/products')
 
 const app = express()
 
+// agrego middleware
+app.use(bodyParser.json())
+
+
+// views engine
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
@@ -19,8 +24,11 @@ app.use('/products', productsRouter)
 // router para manejo de api
 app.use('/api/products', productosApiRouter)
 
-// agrego middleware
-//app.use(bodyParse.json())
+
+// redirect
+app.get('/', (req, res) => {
+  res.redirect('/products')
+})
 
 const PORT = 8000
 const server = app.listen(PORT, () => {
