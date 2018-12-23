@@ -5,6 +5,12 @@ const bodyParser = require('body-parser')
 const productsRouter = require('./routes/views/products')
 const productosApiRouter = require('./routes/api/products')
 
+const {
+  logErrors,
+  clientErrorHandler,
+  errorHandler
+} = require('./utils/middlewares/errorHandlers')
+
 const app = express()
 
 // agrego middleware
@@ -29,6 +35,13 @@ app.use('/api/products', productosApiRouter)
 app.get('/', (req, res) => {
   res.redirect('/products')
 })
+
+
+// middleware error
+app.use(logErrors)
+app.use(clientErrorHandler)
+app.use(errorHandler)
+
 
 const PORT = 8000
 const server = app.listen(PORT, () => {
