@@ -1,6 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const ProductsService = require('../../services/products')
+const validation = require('../../utils/middlewares/validationHandlers')
+
+const {
+  productIdSchema,
+  productTagSchema,
+  createProductSchema,
+  updateProductSchema
+} = require('../../utils/schemas/products')
 
 const productsService = new ProductsService()
 
@@ -37,7 +45,7 @@ router.get('/:productId', async (req, res, next) => {
 })
 
 
-router.post('/', async (req, res, next) => {
+router.post('/', validation(createProductSchema), async (req, res, next) => {
   const { body: product } = req
 
   try {
@@ -53,7 +61,11 @@ router.post('/', async (req, res, next) => {
 })
 
 
-router.put('/:productId', async (req, res, next) => {
+router.put(
+  '/:productId',
+  validation({productId: productIdSchema}, 'params'),
+  validation(updateProductSchema),
+  async (req, res, next) => {
   const { productId } = req.params
   const { body: product } = req
 
