@@ -1,12 +1,15 @@
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
+const boom = require('boom')
 
 const productsRouter = require('./routes/views/products')
 const productosApiRouter = require('./routes/api/products')
+const isRequestAjaxOrApi = require('./utils/isRequestAjaxOrApi')
 
 const {
   logErrors,
+  wrapErrors,
   clientErrorHandler,
   errorHandler
 } = require('./utils/middlewares/errorHandlers')
@@ -36,9 +39,21 @@ app.get('/', (req, res) => {
   res.redirect('/products')
 })
 
+app.use((req, res, next) => {
+  if (isRequestAjaxOrApi(req)) {
+    const {
+      output: {statusCode, payload}
+    } = boom.notFount()
+
+    req.status(statusCode).json(payload)
+  }
+
+  res.status(404).render('404')
+})
 
 // middleware error
 app.use(logErrors)
+app.use(wrapErrors)
 app.use(clientErrorHandler)
 app.use(errorHandler)
 
