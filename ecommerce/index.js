@@ -6,6 +6,7 @@ const boom = require('boom')
 const productsRouter = require('./routes/views/products')
 const productosApiRouter = require('./routes/api/products')
 const isRequestAjaxOrApi = require('./utils/isRequestAjaxOrApi')
+const authApiRouter = require('./routes/api/auth')
 
 const {
   logErrors,
@@ -32,6 +33,9 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use('/products', productsRouter)
 // router para manejo de api
 app.use('/api/products', productosApiRouter)
+// authentication
+app.use('/api/auth', authApiRouter)
+
 
 
 // redirect
