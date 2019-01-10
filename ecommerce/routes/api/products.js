@@ -13,10 +13,10 @@ const {
 // JWT strategy
 require("../../utils/auth/strategies/jwt")
 
-//const cacheResponse = require("../../utils/cacheResponse")
-// const { FIVE_MINUTES_IN_SECONDS, SIXTY_MINUTES_IN_SECONDS } = require(
-//   "../../utils/time"
-// )
+const cacheResponse = require("../../utils/cacheResponse")
+const { FIVE_MINUTES_IN_SECONDS, SIXTY_MINUTES_IN_SECONDS } = require(
+  "../../utils/time"
+)
 
 function productsApi(app) {
   const router = express.Router()

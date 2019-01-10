@@ -7,6 +7,7 @@ const productsRouter = require('./routes/views/products')
 const productosApiRouter = require('./routes/api/products')
 const isRequestAjaxOrApi = require('./utils/isRequestAjaxOrApi')
 const authApiRouter = require('./routes/api/auth')
+const helmet = require('helmet')
 
 const {
   logErrors,
@@ -18,6 +19,7 @@ const {
 const app = express()
 
 // agrego middleware
+app.use(helmet())  // debe ser el primer middleware
 app.use(bodyParser.json())
 
 
